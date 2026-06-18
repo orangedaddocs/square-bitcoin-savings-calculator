@@ -1,5 +1,10 @@
 export const resourceLinks = [
   {
+    title: "Here's how you turn it on",
+    description: "Square's 3-minute step-by-step guide to enabling Bitcoin Payments.",
+    href: "https://squareup.com/us/en/square-university/invoices-gift-cards-banking/accept-bitcoin-payments-with-square-a-step-by-step-guide"
+  },
+  {
     title: "Accept Bitcoin with Square",
     description: "Square's product page for Bitcoin Payments.",
     href: "https://squareup.com/us/en/bitcoin"

@@ -689,8 +689,7 @@ p {
   font-size: 1.4rem;
 }
 
-.resource-list a,
-.future-note {
+.resource-list a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -721,18 +720,6 @@ p {
 .resource-list a svg {
   flex: 0 0 auto;
   color: var(--green-700);
-}
-
-.future-note {
-  justify-content: flex-start;
-  color: var(--green-900);
-  font-size: 0.9rem;
-  font-weight: 760;
-}
-
-.future-note svg {
-  flex: 0 0 auto;
-  color: var(--orange);
 }
 
 @media (max-width: 860px) {

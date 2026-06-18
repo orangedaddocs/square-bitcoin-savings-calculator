@@ -8,8 +8,7 @@ import {
   ExternalLink,
   QrCode,
   ReceiptText,
-  ShieldCheck,
-  Sparkles
+  ShieldCheck
 } from "lucide-react";
 import {
   BITCOIN_TRANSACTION_CAP,
@@ -477,10 +476,6 @@ function ArticlePage() {
               <ExternalLink size={16} />
             </a>
           ))}
-        </div>
-        <div className="future-note">
-          <Sparkles size={18} />
-          <span>Next page: How to Turn It On, with screenshots and video.</span>
         </div>
       </aside>
     </main>
