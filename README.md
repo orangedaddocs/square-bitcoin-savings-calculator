@@ -1,5 +1,7 @@
 # Square Bitcoin Savings Calculator
 
+![Square Bitcoin Savings Calculator preview](public/og-image.png)
+
 A simple calculator for onboarding Square merchants to Bitcoin Payments.
 
 When you walk into a Square merchant, the first question is usually: "What would this actually save me?" This app lets you enter a real ticket size, choose whether it is a one-time purchase or a repeat customer, and show the merchant the fee difference between card payments and Bitcoin Payments.
