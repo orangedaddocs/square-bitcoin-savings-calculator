@@ -435,20 +435,6 @@ function ArticlePage() {
           </p>
         </header>
 
-        <section
-          id="common-questions"
-          className="faq-strip"
-          aria-labelledby="faq-title"
-        >
-          <h2 id="faq-title">Common Questions About Bitcoin</h2>
-          {commonQuestions.map((item) => (
-            <details key={item.question} className="faq-item">
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </section>
-
         <div className="article-body">
           {articleParagraphs.map((paragraph, paragraphIndex) => (
             <p key={paragraphIndex}>
@@ -462,6 +448,20 @@ function ArticlePage() {
             </p>
           ))}
         </div>
+
+        <section
+          id="common-questions"
+          className="faq-strip"
+          aria-labelledby="faq-title"
+        >
+          <h2 id="faq-title">Common Questions About Bitcoin</h2>
+          {commonQuestions.map((item) => (
+            <details key={item.question} className="faq-item">
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </section>
       </article>
 
       <aside className="resource-panel" aria-labelledby="resources-title">
