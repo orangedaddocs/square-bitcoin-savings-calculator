@@ -502,7 +502,6 @@ p {
   line-height: 1.55;
 }
 
-.qr-target,
 .qr-note {
   margin-bottom: 10px;
   padding: 10px 12px;
@@ -513,11 +512,6 @@ p {
   font-size: 0.84rem;
   font-weight: 650;
   overflow-wrap: anywhere;
-}
-
-.qr-target a {
-  color: var(--green-900);
-  font-weight: 850;
 }
 
 .qr-note {
@@ -939,8 +933,8 @@ p {
     display: none;
   }
 
-  .hero-copy {
-    padding-top: 0;
+  .calculator-grid .hero-copy {
+    display: none;
   }
 
   .lede {

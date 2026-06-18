@@ -21,7 +21,6 @@ import { articleParagraphs, resourceLinks } from "./content";
 import {
   FEEDBACK_EMAIL,
   GITHUB_REPO_URL,
-  PUBLIC_ARTICLE_URL,
   QR_IMAGE_PATH
 } from "./links";
 import "./styles.css";
@@ -364,9 +363,6 @@ function QrPanel() {
         <p>
           A 2-minute page with the plain-English fee case, practical benefits, FAQ,
           and Square resources.
-        </p>
-        <p className="qr-target">
-          QR target: <a href={PUBLIC_ARTICLE_URL}>{PUBLIC_ARTICLE_URL}</a>
         </p>
         {isLocal ? (
           <p className="qr-note">
