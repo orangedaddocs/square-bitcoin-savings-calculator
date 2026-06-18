@@ -23,7 +23,6 @@ import { articleParagraphs, resourceLinks } from "./content";
 import {
   FEEDBACK_EMAIL,
   GITHUB_REPO_URL,
-  PDF_HANDOUT_PATH,
   PUBLIC_ARTICLE_URL,
   QR_IMAGE_PATH
 } from "./links";
@@ -412,21 +411,46 @@ function ArticlePage() {
           ))}
         </div>
 
-        <section className="faq-strip" aria-labelledby="faq-title">
-          <h2 id="faq-title">Quick FAQ</h2>
+        <section
+          id="common-questions"
+          className="faq-strip"
+          aria-labelledby="faq-title"
+        >
+          <h2 id="faq-title">Common Questions About Bitcoin</h2>
           <div>
-            <h3>Does this replace cards?</h3>
-            <p>No. It adds another payment option alongside what already works.</p>
-          </div>
-          <div>
-            <h3>What happens after 2026?</h3>
-            <p>Square lists a flat 1% Bitcoin Payments fee starting in 2027.</p>
-          </div>
-          <div>
-            <h3>Do I have to keep bitcoin?</h3>
+            <h3>Do I have to hold bitcoin?</h3>
             <p>
-              No. You can receive Bitcoin Payments as bitcoin or automatically
-              converted USD, depending on your Square settings.
+              No. Square says sellers can receive Bitcoin Payments as USD in
+              their Square balance. You can accept Bitcoin without holding it.
+            </p>
+          </div>
+          <div>
+            <h3>Isn't bitcoin for criminals?</h3>
+            <p>
+              Criminals use every payment method. Bitcoin transactions are
+              public, and this runs through Square as another checkout option.
+            </p>
+          </div>
+          <div>
+            <h3>Is bitcoin a Trump thing?</h3>
+            <p>
+              No. Politicians argue about it, but Bitcoin is an open payment
+              network. This calculator is about fees, not politics.
+            </p>
+          </div>
+          <div>
+            <h3>Is bitcoin bad for the environment?</h3>
+            <p>
+              Bitcoin uses electricity. The fair question is where that energy
+              comes from. For this tool, the merchant decision starts with fees.
+            </p>
+          </div>
+          <div>
+            <h3>How will I get taxed?</h3>
+            <p>
+              Sales are still business income. Square says USD settlement should
+              not create capital gains at that moment; holding bitcoin can.
+              Ask a tax pro for your situation.
             </p>
           </div>
         </section>
@@ -440,10 +464,18 @@ function ArticlePage() {
             <h2 id="resources-title">Keep going</h2>
           </div>
         </div>
-        <a className="pdf-link" href={PDF_HANDOUT_PATH} target="_blank" rel="noreferrer">
+        <button
+          className="pdf-link"
+          type="button"
+          onClick={() =>
+            document
+              .getElementById("common-questions")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" })
+          }
+        >
           <BookOpen size={20} />
-          Download the one-page handout
-        </a>
+          Common questions about Bitcoin
+        </button>
         <div className="resource-list">
           {resourceLinks.map((link) => (
             <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
