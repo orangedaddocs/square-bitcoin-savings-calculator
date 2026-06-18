@@ -35,3 +35,5 @@ npm run qr
 npm run pdf
 npm run build
 ```
+
+Built with 🧡 for the ₿ community.
