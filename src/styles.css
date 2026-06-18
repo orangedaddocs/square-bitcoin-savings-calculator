@@ -684,16 +684,11 @@ p {
   gap: 12px;
 }
 
-.resource-heading svg {
-  color: var(--green-700);
-}
-
 .resource-heading h2 {
   margin: 0;
   font-size: 1.4rem;
 }
 
-.pdf-link,
 .resource-list a,
 .future-note {
   display: flex;
@@ -706,13 +701,6 @@ p {
   border-radius: 8px;
   background: var(--paper);
   text-decoration: none;
-}
-
-.pdf-link {
-  justify-content: flex-start;
-  background: var(--green-900);
-  color: var(--white);
-  font-weight: 850;
 }
 
 .resource-list {

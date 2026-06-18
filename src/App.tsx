@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BadgeDollarSign,
   Bitcoin,
-  BookOpen,
   Check,
   CircleDollarSign,
   ExternalLink,
@@ -94,7 +93,7 @@ export default function App() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <span>Version one. Feedback welcome.</span>
+      <span>v1.0. Feedback welcome.</span>
       <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">
         GitHub repo
       </a>
@@ -466,24 +465,8 @@ function ArticlePage() {
 
       <aside className="resource-panel" aria-labelledby="resources-title">
         <div className="resource-heading">
-          <CircleDollarSign size={22} />
-          <div>
-            <p className="eyebrow">Resources</p>
-            <h2 id="resources-title">Keep going</h2>
-          </div>
+          <h2 id="resources-title">Resources</h2>
         </div>
-        <button
-          className="pdf-link"
-          type="button"
-          onClick={() =>
-            document
-              .getElementById("common-questions")
-              ?.scrollIntoView({ behavior: "smooth", block: "start" })
-          }
-        >
-          <BookOpen size={20} />
-          Common questions about Bitcoin
-        </button>
         <div className="resource-list">
           {resourceLinks.map((link) => (
             <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
