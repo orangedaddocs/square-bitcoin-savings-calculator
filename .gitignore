@@ -1,0 +1,8 @@
+node_modules/
+dist/
+output/
+tmp/
+.DS_Store
+.env
+*.local
+why_turn_on_bitcoin.pdf
