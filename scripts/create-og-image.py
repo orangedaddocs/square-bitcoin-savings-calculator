@@ -24,38 +24,37 @@ image = Image.new("RGB", (WIDTH, HEIGHT), "#f8faf6")
 draw = ImageDraw.Draw(image)
 
 ink = "#080b09"
-muted = "#5e6760"
 green_900 = "#063d2f"
 green_500 = "#21a66b"
-green_100 = "#e4f5e9"
-orange = "#f7931a"
 white = "#ffffff"
-line = "#dce5dd"
 
-draw.rectangle((0, 0, WIDTH, HEIGHT), fill="#f8faf6")
-draw.rectangle((0, 0, WIDTH, 160), fill=green_100)
+draw.rectangle((0, 0, WIDTH, HEIGHT), fill=green_900)
+draw.rectangle((0, 0, WIDTH, 24), fill=green_500)
 
-card = (70, 72, WIDTH - 70, HEIGHT - 72)
-shadow = (card[0] + 14, card[1] + 14, card[2] + 14, card[3] + 14)
-draw.rounded_rectangle(shadow, radius=18, fill=green_500)
-draw.rounded_rectangle(card, radius=18, fill=white, outline=ink, width=3)
-
-mark = (104, 112, 204, 212)
-draw.rounded_rectangle(mark, radius=18, fill=white, outline=green_900, width=4)
-draw.text((137, 126), "B", fill=green_900, font=font(56, bold=True))
-draw.line((154, 126, 154, 112), fill=orange, width=5)
-draw.line((154, 212, 154, 226), fill=orange, width=5)
-
-draw.text((232, 112), "Square Bitcoin", fill=ink, font=font(56, bold=True))
-draw.text((104, 236), "Savings", fill=green_900, font=font(124, bold=True))
-draw.text((104, 350), "Calculator", fill=green_900, font=font(124, bold=True))
+topline = "#dff4e6"
+soft_green = "#9bdcba"
+box_fill = "#0b4a38"
 
 draw.text(
-    (108, 492),
-    "Card fees vs Bitcoin fees",
-    fill=ink,
-    font=font(36, bold=True),
+    (72, 72),
+    "Square Bitcoin Savings Calculator",
+    fill=topline,
+    font=font(38, bold=True),
 )
+draw.text((72, 148), "Skip credit", fill=white, font=font(102, bold=True))
+draw.text((72, 250), "card fees.", fill=white, font=font(118, bold=True))
+draw.text((72, 418), "Accept Bitcoin.", fill=soft_green, font=font(76, bold=True))
+
+for top, label, value in ((128, "Card", "2.6% + 15c"), (292, "Bitcoin", "0% in 2026")):
+    draw.rounded_rectangle(
+        (782, top, 1086, top + 118),
+        radius=14,
+        fill=box_fill,
+        outline=topline,
+        width=3,
+    )
+    draw.text((818, top + 25), label, fill=topline, font=font(32, bold=True))
+    draw.text((818, top + 63), value, fill=white, font=font(39, bold=True))
 
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 image.save(OUTPUT)
