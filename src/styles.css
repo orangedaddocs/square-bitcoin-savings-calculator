@@ -598,35 +598,71 @@ p {
 
 .faq-strip {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  max-width: 900px;
-  margin-top: 36px;
+  gap: 8px;
+  max-width: 820px;
+  margin: 6px 0 36px;
 }
 
 .faq-strip h2 {
-  grid-column: 1 / -1;
-  margin-bottom: 4px;
-  font-size: 1.6rem;
+  margin: 0 0 8px;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  line-height: 1.05;
 }
 
-.faq-strip div {
-  min-height: 142px;
-  padding: 16px;
+.faq-item {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
+  overflow: hidden;
 }
 
-.faq-strip h3 {
-  margin-bottom: 8px;
-  font-size: 1rem;
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-weight: 850;
+  line-height: 1.25;
+  cursor: pointer;
+  list-style: none;
 }
 
-.faq-strip p {
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 999px;
+  background: var(--green-100);
+  color: var(--green-900);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.faq-item[open] summary {
+  color: var(--green-900);
+}
+
+.faq-item[open] summary::after {
+  content: "-";
+  background: var(--green-900);
+  color: var(--white);
+}
+
+.faq-item p {
   margin: 0;
+  padding: 0 16px 16px;
   color: var(--muted);
-  line-height: 1.45;
+  line-height: 1.55;
 }
 
 .resource-panel {
@@ -867,8 +903,7 @@ p {
     font-size: 0.78rem;
   }
 
-  .preset-grid,
-  .faq-strip {
+  .preset-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -941,8 +976,14 @@ p {
     margin-top: 18px;
   }
 
-  .faq-strip div:first-of-type {
-    grid-column: 1 / -1;
+  .faq-strip {
+    margin-bottom: 28px;
+  }
+
+  .faq-item summary {
+    min-height: 54px;
+    padding: 13px 14px;
+    font-size: 0.98rem;
   }
 
   .article-body p:first-child::first-letter {

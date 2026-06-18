@@ -385,6 +385,44 @@ function QrPanel() {
 }
 
 function ArticlePage() {
+  const commonQuestions = [
+    {
+      question: "Can it go straight to cash?",
+      answer:
+        "Yes. Square says sellers can receive Bitcoin Payments as USD in their Square balance, so a merchant can accept Bitcoin without holding bitcoin. If they want to hold bitcoin, that is a separate choice in their Square settings."
+    },
+    {
+      question: "Does this replace cards?",
+      answer:
+        "No. It adds another payment option alongside cards, cash, and everything else that already works. The point is not to make every customer switch. The point is to give customers who already use Bitcoin a lower-fee way to pay."
+    },
+    {
+      question: "What happens after 2026?",
+      answer:
+        "Square lists Bitcoin Payments at 0% through 2026, then a flat 1% starting in 2027. That is still lower than the standard in-person card fee of 2.6% plus 15 cents, especially on smaller tickets."
+    },
+    {
+      question: "How does tax work?",
+      answer:
+        "Sales are still business income. Square says settling Bitcoin Payments to USD should not create a capital gain or loss at payment time because the bitcoin is converted right away. If a merchant chooses to hold bitcoin instead, that can create tax events later."
+    },
+    {
+      question: "Isn't bitcoin for criminals?",
+      answer:
+        "Criminals use every payment method, especially dollars. Chainalysis estimates illicit activity is less than 1% of overall crypto transaction volume, and bitcoin is only one part of crypto. Bitcoin transactions are also public, which gives investigators a trail that cash does not."
+    },
+    {
+      question: "Is bitcoin bad for the environment?",
+      answer:
+        "Bitcoin uses electricity, so the fair question is where that electricity comes from and what it would otherwise be used for. Some mining uses wasted or renewable energy; some does not. For a merchant, this tool is focused on a narrower decision: whether a lower-fee payment option is worth turning on."
+    },
+    {
+      question: "Is bitcoin a Trump thing?",
+      answer:
+        "No. If we are being honest, politics has not always helped Bitcoin's reputation. But Bitcoin itself is not a party, a campaign, or a politician. It is a payment network and a form of money. Customers who pay with it usually believe it is a better way to save and spend."
+    }
+  ];
+
   return (
     <main className="article-page">
       <article className="article-shell">
@@ -396,6 +434,20 @@ function ArticlePage() {
             more of each sale.
           </p>
         </header>
+
+        <section
+          id="common-questions"
+          className="faq-strip"
+          aria-labelledby="faq-title"
+        >
+          <h2 id="faq-title">Common Questions About Bitcoin</h2>
+          {commonQuestions.map((item) => (
+            <details key={item.question} className="faq-item">
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </section>
 
         <div className="article-body">
           {articleParagraphs.map((paragraph, paragraphIndex) => (
@@ -410,50 +462,6 @@ function ArticlePage() {
             </p>
           ))}
         </div>
-
-        <section
-          id="common-questions"
-          className="faq-strip"
-          aria-labelledby="faq-title"
-        >
-          <h2 id="faq-title">Common Questions About Bitcoin</h2>
-          <div>
-            <h3>Do I have to hold bitcoin?</h3>
-            <p>
-              No. Square says sellers can receive Bitcoin Payments as USD in
-              their Square balance. You can accept Bitcoin without holding it.
-            </p>
-          </div>
-          <div>
-            <h3>Isn't bitcoin for criminals?</h3>
-            <p>
-              Criminals use every payment method. Bitcoin transactions are
-              public, and this runs through Square as another checkout option.
-            </p>
-          </div>
-          <div>
-            <h3>Is bitcoin a Trump thing?</h3>
-            <p>
-              No. Politicians argue about it, but Bitcoin is an open payment
-              network. This calculator is about fees, not politics.
-            </p>
-          </div>
-          <div>
-            <h3>Is bitcoin bad for the environment?</h3>
-            <p>
-              Bitcoin uses electricity. The fair question is where that energy
-              comes from. For this tool, the merchant decision starts with fees.
-            </p>
-          </div>
-          <div>
-            <h3>How will I get taxed?</h3>
-            <p>
-              Sales are still business income. Square says USD settlement should
-              not create capital gains at that moment; holding bitcoin can.
-              Ask a tax pro for your situation.
-            </p>
-          </div>
-        </section>
       </article>
 
       <aside className="resource-panel" aria-labelledby="resources-title">
