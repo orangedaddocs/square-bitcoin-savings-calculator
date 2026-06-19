@@ -1,8 +1,8 @@
 # Square Bitcoin Savings Calculator
 
-<video src="https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4" controls width="100%" poster="public/og-image.png">
-  Watch the walkthrough video: https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4
-</video>
+[![Square Bitcoin Savings Calculator walkthrough](public/square-bitcoin-walkthrough-preview.gif)](https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4)
+
+[Watch the full walkthrough video](https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4)
 
 A simple calculator for onboarding Square merchants to Bitcoin Payments.
 
