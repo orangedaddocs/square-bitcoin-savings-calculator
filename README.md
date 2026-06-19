@@ -1,10 +1,10 @@
 # Square Bitcoin Savings Calculator
 
-![Square Bitcoin Savings Calculator preview](public/og-image.png)
+<video src="https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4" controls width="100%" poster="public/og-image.png">
+  Watch the walkthrough video: https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4
+</video>
 
 A simple calculator for onboarding Square merchants to Bitcoin Payments.
-
-Watch the tutorial video: https://orangedaddocs.github.io/square-bitcoin-savings-calculator/square-bitcoin-walkthrough.mp4
 
 When you walk into a Square merchant, the first question is usually: "What would this actually save me?" This app lets you enter a real ticket size, choose whether it is a one-time purchase or a repeat customer, and show the merchant the fee difference between card payments and Bitcoin Payments.
 
