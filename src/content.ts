@@ -42,7 +42,7 @@ export const articleParagraphs: ArticleSegment[][] = [
   [
     "Every card sale you take has a fee built into it: 2.6% plus 15 cents, every time. Bitcoin Payments run inside the Square setup you already have, and they cost you nothing through 2026, then a flat 1% after that. On a $5 coffee, that is 28 cents to the card networks versus nothing today. ",
     {
-      text: "A regular who buys that coffee every day adds up to about $100 a year to your bottom line.",
+      text: "A regular who buys that coffee every day adds up to about $67 over the next 12 full months.",
       strong: true
     },
     " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."
