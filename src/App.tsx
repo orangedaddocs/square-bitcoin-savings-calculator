@@ -294,11 +294,11 @@ function SavingsResults({
   return (
     <section className="results" aria-label="Savings results">
       <div className="big-number">
-        <span>Over the next 18 months</span>
+        <span>You save over the next {horizon.months} full months</span>
         <strong>{formatMoney(horizon.totalSavings)}</strong>
         <p>
           Based on {formatVisits(horizon.totalVisits)} similar visits at{" "}
-          {formatMoney(fees.ticket)} each.
+          {formatMoney(fees.ticket)} each. {formatHorizonMix(horizon)}
         </p>
       </div>
 
@@ -324,6 +324,18 @@ function SavingsResults({
       </div>
     </section>
   );
+}
+
+function formatHorizonMix(horizon: ReturnType<typeof calculateHorizonSavings>) {
+  if (horizon.monthsThrough2026 === horizon.months) {
+    return `All ${horizon.months} months are at the 0% Bitcoin fee.`;
+  }
+
+  if (horizon.monthsAfter2026 === horizon.months) {
+    return `All ${horizon.months} months use the 1% Bitcoin fee.`;
+  }
+
+  return `${horizon.monthsThrough2026} months at 0%, then ${horizon.monthsAfter2026} months at 1%.`;
 }
 
 function Metric({

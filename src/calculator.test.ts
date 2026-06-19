@@ -34,19 +34,33 @@ describe("calculateFees", () => {
 });
 
 describe("calculateHorizonSavings", () => {
-  it("splits an 18 month horizon between fee-free 2026 and 2027+ 1% fees", () => {
+  it("splits the next 12 full months between fee-free 2026 and 2027+ 1% fees", () => {
     const result = calculateHorizonSavings(
       15,
       4.33,
-      18,
+      12,
       new Date("2026-06-18T12:00:00")
     );
 
-    expect(result.totalVisits).toBeCloseTo(77.94, 2);
-    expect(result.visitsThrough2026).toBeGreaterThan(25);
-    expect(result.visitsAfter2026).toBeGreaterThan(45);
-    expect(result.totalSavings).toBeGreaterThan(30);
-    expect(result.totalSavings).toBeLessThan(40);
+    expect(result.monthsThrough2026).toBe(6);
+    expect(result.monthsAfter2026).toBe(6);
+    expect(result.totalVisits).toBeCloseTo(51.96, 2);
+    expect(result.visitsThrough2026).toBeCloseTo(25.98, 2);
+    expect(result.visitsAfter2026).toBeCloseTo(25.98, 2);
+    expect(result.totalSavings).toBe(24.16);
+  });
+
+  it("uses the current month when the calculation runs on the first", () => {
+    const result = calculateHorizonSavings(
+      10,
+      8.66,
+      12,
+      new Date("2026-07-01T12:00:00")
+    );
+
+    expect(result.monthsThrough2026).toBe(6);
+    expect(result.monthsAfter2026).toBe(6);
+    expect(result.totalVisits).toBeCloseTo(103.92, 2);
   });
 });
 

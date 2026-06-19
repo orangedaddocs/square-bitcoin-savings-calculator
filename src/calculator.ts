@@ -14,6 +14,8 @@ export type FeeResult = {
 
 export type HorizonResult = {
   months: number;
+  monthsThrough2026: number;
+  monthsAfter2026: number;
   visitsPerMonth: number;
   totalVisits: number;
   visitsThrough2026: number;
@@ -22,8 +24,6 @@ export type HorizonResult = {
   saveAfter2026: number;
   totalSavings: number;
 };
-
-const START_OF_2027 = new Date("2027-01-01T00:00:00");
 
 export function roundMoney(value: number) {
   return Math.round((value + Number.EPSILON) * 100) / 100;
@@ -52,24 +52,22 @@ export function calculateFees(ticketInput: number): FeeResult {
 export function calculateHorizonSavings(
   ticketInput: number,
   visitsPerMonthInput: number,
-  months = 18,
+  months = 12,
   now = new Date()
 ): HorizonResult {
   const fees = calculateFees(ticketInput);
   const visitsPerMonth = Math.max(0, visitsPerMonthInput);
+  const start = startOfFullMonth(now);
+  const monthsThrough2026 = countMonthsThrough2026(start, months);
+  const monthsAfter2026 = months - monthsThrough2026;
   const totalVisits = visitsPerMonth * months;
-  const end = addMonths(now, months);
-  const totalDays = Math.max(1, daysBetween(now, end));
-  const daysThrough2026 = Math.max(
-    0,
-    Math.min(daysBetween(now, START_OF_2027), totalDays)
-  );
-  const through2026Share = daysThrough2026 / totalDays;
-  const visitsThrough2026 = totalVisits * through2026Share;
-  const visitsAfter2026 = totalVisits - visitsThrough2026;
+  const visitsThrough2026 = visitsPerMonth * monthsThrough2026;
+  const visitsAfter2026 = visitsPerMonth * monthsAfter2026;
 
   return {
     months,
+    monthsThrough2026,
+    monthsAfter2026,
     visitsPerMonth,
     totalVisits,
     visitsThrough2026,
@@ -102,7 +100,18 @@ function addMonths(date: Date, months: number) {
   return result;
 }
 
-function daysBetween(start: Date, end: Date) {
-  const msPerDay = 24 * 60 * 60 * 1000;
-  return (end.getTime() - start.getTime()) / msPerDay;
+function startOfFullMonth(date: Date) {
+  const start = new Date(date.getFullYear(), date.getMonth(), 1);
+  return date.getDate() === 1 ? start : addMonths(start, 1);
+}
+
+function countMonthsThrough2026(start: Date, months: number) {
+  let count = 0;
+
+  for (let index = 0; index < months; index += 1) {
+    const month = addMonths(start, index);
+    if (month.getFullYear() <= 2026) count += 1;
+  }
+
+  return count;
 }
