@@ -23,9 +23,9 @@ A few official Square links worth keeping close:
 
 This is v1.0, built in public by a vibe-coding dad who wants merchants to see the numbers fast.
 
-Please use it, fork it, remix it, clean it up, or change it for your own local merchant onboarding. It is free software, just like it should be.
+Please use it and fork it for your own local merchant onboarding. It is free software, just like it should be.
 
-Contributions are especially welcome if you are a developer, you know somebody at Square, or you have walked a merchant through turning this on:
+**Contributions are especially welcome if you are a developer, you know somebody at Square, or you have walked a merchant through turning this on:**
 
 - screenshots or walkthroughs showing how to turn Bitcoin Payments on in Square
 - short videos merchants can watch
@@ -37,7 +37,7 @@ Questions or ideas: orangedaddocs@proton.me
 
 ## License
 
-MIT. Use it, change it, share it, and make it better.
+MIT.
 
 ## Development
 
