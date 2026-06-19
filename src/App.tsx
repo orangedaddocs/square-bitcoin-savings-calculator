@@ -421,11 +421,6 @@ function ArticlePage() {
       question: "Is bitcoin bad for the environment?",
       answer:
         "Bitcoin uses electricity, so the fair question is where that electricity comes from and what it would otherwise be used for. Some mining uses wasted or renewable energy; some does not. For a merchant, this tool is focused on a narrower decision: whether a lower-fee payment option is worth turning on."
-    },
-    {
-      question: "Is bitcoin a Trump thing?",
-      answer:
-        "No. If we are being honest, politics has not always helped Bitcoin's reputation. But Bitcoin itself is not a party, a campaign, or a politician. It is a payment network and a form of money. Customers who pay with it usually believe it is a better way to save and spend."
     }
   ];
 
