@@ -97,6 +97,11 @@ describe("CalculatorPage", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
+        /Bitcoin customers are generally happy to cover the small fee on their end, and they're eager to become regulars/
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
         "The math gets interesting when you start getting daily customers. If seven people a day do that, the owner saves more than"
       )
     ).not.toHaveClass("article-accent");

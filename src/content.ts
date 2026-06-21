@@ -48,7 +48,7 @@ export const articleParagraphs: ArticleSegment[][] = [
       text: "A regular who buys that coffee every day adds up to about $67 over the next 12 full months.",
       strong: true
     },
-    " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."
+    " Bitcoin customers are generally happy to cover the small fee on their end, and they're eager to become regulars who actively support merchants that accept it."
   ],
   [
     {
