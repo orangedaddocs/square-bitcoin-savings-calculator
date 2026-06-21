@@ -102,7 +102,7 @@ describe("CalculatorPage", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "The math gets interesting when you start getting daily customers. If seven people a day do that, the owner saves more than"
+        "The math gets interesting when you get daily customers. If seven people come in daily, the owner saves more than"
       )
     ).not.toHaveClass("article-accent");
     expect(screen.getByText("$1,000 a year in fees")).toHaveClass("article-accent");

@@ -52,7 +52,7 @@ export const articleParagraphs: ArticleSegment[][] = [
   ],
   [
     {
-      text: "The math gets interesting when you start getting daily customers. If seven people a day do that, the owner saves more than ",
+      text: "The math gets interesting when you get daily customers. If seven people come in daily, the owner saves more than ",
       strong: true
     },
     {
