@@ -1,8 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("CalculatorPage", () => {
+  beforeEach(() => {
+    window.location.hash = "#/";
+  });
+
   it("defaults to repeat visits", () => {
     render(<App />);
 
@@ -80,5 +84,16 @@ describe("CalculatorPage", () => {
     expect(children.indexOf(inputPanel!)).toBeLessThan(children.indexOf(peopleControls!));
     expect(children.indexOf(peopleControls!)).toBeLessThan(children.indexOf(results!));
     expect(children.indexOf(peopleControls!)).toBeLessThan(children.indexOf(qrPanel!));
+  });
+
+  it("shows the stronger savings proof on the Why Bitcoin page", () => {
+    window.location.hash = "#/why-bitcoin";
+    render(<App />);
+
+    expect(
+      screen.getByText(
+        "A regular buys a coffee today. If seven people come in each day and spend $13, the fee gap is more than $1,000 back in the merchant's pocket over the next year."
+      )
+    ).toBeInTheDocument();
   });
 });

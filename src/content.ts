@@ -40,6 +40,12 @@ export type ArticleSegment = string | { text: string; strong: true };
 
 export const articleParagraphs: ArticleSegment[][] = [
   [
+    {
+      text: "A regular buys a coffee today. If seven people come in each day and spend $13, the fee gap is more than $1,000 back in the merchant's pocket over the next year.",
+      strong: true
+    }
+  ],
+  [
     "Every card sale you take has a fee built into it: 2.6% plus 15 cents, every time. Bitcoin Payments run inside the Square setup you already have, and they cost you nothing through 2026, then a flat 1% after that. On a $5 coffee, that is 28 cents to the card networks versus nothing today. ",
     {
       text: "A regular who buys that coffee every day adds up to about $67 over the next 12 full months.",
