@@ -295,9 +295,13 @@ function PeopleVolumePanel({
   return (
     <section className="people-volume-panel" aria-label="People volume">
       <div className="people-count-card">
-        <label htmlFor="people-count">People paying with Bitcoin</label>
+        <label htmlFor="people-count">
+          <span>People paying</span>
+          <span>with Bitcoin</span>
+        </label>
         <input
           id="people-count"
+          aria-label="People paying with Bitcoin"
           inputMode="numeric"
           min="0"
           value={peopleInput}

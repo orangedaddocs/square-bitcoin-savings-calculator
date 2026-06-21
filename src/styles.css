@@ -332,6 +332,8 @@ p {
 }
 
 .people-count-card label {
+  display: grid;
+  gap: 1px;
   color: var(--green-900);
   font-size: 1.08rem;
   font-weight: 850;
@@ -956,7 +958,7 @@ p {
   }
 
   .people-volume-panel {
-    grid-template-columns: minmax(92px, 0.68fr) minmax(0, 1.32fr);
+    grid-template-columns: minmax(132px, 1fr) max-content;
     gap: 8px;
     padding: 9px;
   }
@@ -968,7 +970,7 @@ p {
   }
 
   .people-count-card label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .people-count-card input {
@@ -977,12 +979,14 @@ p {
 
   .people-period-stack {
     gap: 6px;
+    width: max-content;
   }
 
   .people-period-stack button {
+    width: 154px;
     min-height: 34px;
     padding: 0 9px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
   .results {
