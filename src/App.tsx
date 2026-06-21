@@ -112,7 +112,7 @@ function CalculatorPage() {
   const [ticketInput, setTicketInput] = useState("13");
   const [visitsPerMonth, setVisitsPerMonth] = useState(8.66);
   const [peopleInput, setPeopleInput] = useState("10");
-  const [peoplePeriod, setPeoplePeriod] = useState<PeoplePeriod>("week");
+  const [peoplePeriod, setPeoplePeriod] = useState<PeoplePeriod>("day");
   const [panel, setPanel] = useState<Panel>("numbers");
   const [purchaseMode, setPurchaseMode] = useState<PurchaseMode>("visits");
   const ticket = Number(ticketInput);
