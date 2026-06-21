@@ -50,7 +50,7 @@ export const articleParagraphs: ArticleSegment[][] = [
     },
     " ",
     {
-      text: "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees. Real money.",
+      text: "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees.",
       accent: true
     },
     " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."

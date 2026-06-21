@@ -97,7 +97,7 @@ describe("CalculatorPage", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees. Real money."
+        "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees."
       )
     ).toHaveClass("article-accent");
   });
