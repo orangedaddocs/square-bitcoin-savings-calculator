@@ -95,9 +95,11 @@ describe("CalculatorPage", () => {
         "A regular who buys that coffee every day adds up to about $67 over the next 12 full months."
       )
     ).toBeInTheDocument();
-    expect(screen.getByText("And where the math gets really interesting: if")).not.toHaveClass("article-accent");
-    expect(screen.getByText("seven people a day")).toHaveClass("article-accent");
-    expect(screen.getByText("$13 each")).toHaveClass("article-accent");
+    expect(
+      screen.getByText(
+        "The math gets interesting when you start getting daily customers. If seven people a day do that, the owner saves more than"
+      )
+    ).not.toHaveClass("article-accent");
     expect(screen.getByText("$1,000 a year in fees")).toHaveClass("article-accent");
   });
 });

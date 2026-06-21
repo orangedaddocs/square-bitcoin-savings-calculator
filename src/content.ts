@@ -48,25 +48,11 @@ export const articleParagraphs: ArticleSegment[][] = [
       text: "A regular who buys that coffee every day adds up to about $67 over the next 12 full months.",
       strong: true
     },
-    " ",
+    " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."
+  ],
+  [
     {
-      text: "And where the math gets really interesting: if ",
-      strong: true
-    },
-    {
-      text: "seven people a day",
-      accent: true
-    },
-    {
-      text: " come in for a burrito and a coffee and spend ",
-      strong: true
-    },
-    {
-      text: "$13 each",
-      accent: true
-    },
-    {
-      text: ", the owner saves more than ",
+      text: "The math gets interesting when you start getting daily customers. If seven people a day do that, the owner saves more than ",
       strong: true
     },
     {
@@ -76,8 +62,7 @@ export const articleParagraphs: ArticleSegment[][] = [
     {
       text: ".",
       strong: true
-    },
-    " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."
+    }
   ],
   [
     "Fees are only half of it. A Bitcoin payment is final the moment it clears. There is no chargeback to fight weeks later, no reversal, no back-office time spent on a dispute. The money settles in seconds and it is yours. The honest trade is that refunds work differently: when you refund a Bitcoin sale, Square issues the customer a gift card for the dollar amount rather than reversing the original payment. For most counter sales that is a fair deal - fewer surprises coming back at you, and a clean way to make a refund when you need one."
