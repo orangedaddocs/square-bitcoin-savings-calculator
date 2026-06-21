@@ -111,7 +111,7 @@ function Footer() {
 function CalculatorPage() {
   const [ticketInput, setTicketInput] = useState("13");
   const [visitsPerMonth, setVisitsPerMonth] = useState(8.66);
-  const [peopleInput, setPeopleInput] = useState("10");
+  const [peopleInput, setPeopleInput] = useState("7");
   const [peoplePeriod, setPeoplePeriod] = useState<PeoplePeriod>("day");
   const [panel, setPanel] = useState<Panel>("numbers");
   const [purchaseMode, setPurchaseMode] = useState<PurchaseMode>("visits");

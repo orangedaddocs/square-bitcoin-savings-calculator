@@ -11,14 +11,14 @@ describe("CalculatorPage", () => {
     expect(screen.getByLabelText("Order total")).toHaveValue("13");
   });
 
-  it("opens repeat customers with ten people a day prepared", () => {
+  it("opens repeat customers with seven people a day prepared", () => {
     render(<App />);
 
     fireEvent.click(screen.getByRole("tab", { name: "Repeat customers" }));
 
     expect(screen.getByRole("tab", { name: "Repeat visits" })).toHaveAttribute("aria-selected", "false");
     expect(screen.getByRole("tab", { name: "Repeat customers" })).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByLabelText("People paying with Bitcoin")).toHaveValue("10");
+    expect(screen.getByLabelText("People paying with Bitcoin")).toHaveValue("7");
     expect(screen.getByRole("button", { name: "People a day" })).toHaveClass("active");
   });
 
