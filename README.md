@@ -6,7 +6,7 @@
 
 A simple calculator for onboarding Square merchants to Bitcoin Payments.
 
-When you walk into a Square merchant, the first question is usually: "What would this actually save me?" This app lets you enter a real ticket size, choose whether it is a one-time purchase or a repeat customer, and show the merchant the fee difference between card payments and Bitcoin Payments.
+When you walk into a Square merchant, the first question is usually: "What would this actually save me?" This app lets you enter a real ticket size, choose repeat visits or repeat customers, and show the merchant the fee difference between card payments and Bitcoin Payments.
 
 If they want to learn more, they can scan the QR code and read a short plain-English explanation of how Bitcoin Payments work, why the fee savings matter, and what the tradeoffs are.
 
@@ -23,7 +23,16 @@ A few official Square links worth keeping close:
 
 ## Contribute
 
-This is v1.0, built in public by a vibe-coding dad who wants merchants to see the numbers fast.
+This is v1.1, built in public by a vibe-coding dad who wants merchants to see the numbers fast.
+
+## Release notes
+
+### v1.1 - Repeat Customers Update
+
+- Added a repeat-customers calculator for estimating savings by people paying with Bitcoin per day, week, or month.
+- Kept the original repeat-visits calculator intact for the first tab.
+- Improved the mobile flow so the calculator, savings result, and QR handoff are easier to scan.
+- Thanks for the feedback to the pleb on Stacker News. 🏃‍♂️
 
 Please use it and fork it for your own local merchant onboarding. It is free software, just like it should be.
 

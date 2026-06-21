@@ -2,6 +2,11 @@ export const CARD_PERCENT_RATE = 0.026;
 export const CARD_FIXED_FEE = 0.15;
 export const BITCOIN_2027_RATE = 0.01;
 export const BITCOIN_TRANSACTION_CAP = 600;
+export const DAYS_PER_YEAR = 365;
+export const DAYS_PER_WEEK = 7;
+export const WEEKS_PER_YEAR = DAYS_PER_YEAR / DAYS_PER_WEEK;
+
+export type PeoplePeriod = "day" | "week" | "month";
 
 export type FeeResult = {
   ticket: number;
@@ -24,6 +29,17 @@ export type HorizonResult = {
   saveAfter2026: number;
   totalSavings: number;
 };
+
+export function calculatePeoplePerMonth(
+  peopleCountInput: number,
+  period: PeoplePeriod
+) {
+  const peopleCount = Math.max(0, peopleCountInput);
+
+  if (period === "day") return peopleCount * (DAYS_PER_YEAR / 12);
+  if (period === "week") return peopleCount * (WEEKS_PER_YEAR / 12);
+  return peopleCount;
+}
 
 export function roundMoney(value: number) {
   return Math.round((value + Number.EPSILON) * 100) / 100;
@@ -88,7 +104,7 @@ export function formatMoney(value: number) {
   }).format(roundMoney(value));
 }
 
-export function formatVisits(value: number) {
+export function formatCount(value: number) {
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 1
   }).format(value);

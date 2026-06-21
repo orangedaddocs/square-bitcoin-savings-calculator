@@ -14,8 +14,10 @@ import {
   BITCOIN_TRANSACTION_CAP,
   calculateFees,
   calculateHorizonSavings,
+  calculatePeoplePerMonth,
+  formatCount,
   formatMoney,
-  formatVisits
+  type PeoplePeriod
 } from "./calculator";
 import { articleParagraphs, resourceLinks } from "./content";
 import {
@@ -27,13 +29,19 @@ import "./styles.css";
 
 type Route = "calculator" | "why-bitcoin";
 type Panel = "numbers" | "qr";
-type PurchaseMode = "repeat" | "single";
+type PurchaseMode = "visits" | "customers";
 
 const frequencyPresets = [
   { label: "Monthly", visits: 1 },
   { label: "Weekly", visits: 4.33 },
   { label: "2x/week", visits: 8.66 },
   { label: "Daily", visits: 22 }
+];
+
+const peoplePeriodOptions: Array<{ label: string; period: PeoplePeriod }> = [
+  { label: "People a day", period: "day" },
+  { label: "People a week", period: "week" },
+  { label: "People a month", period: "month" }
 ];
 
 function getRoute(): Route {
@@ -91,7 +99,7 @@ export default function App() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <span>v1.0. Feedback welcome.</span>
+      <span>v1.1. Feedback welcome.</span>
       <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">
         GitHub repo
       </a>
@@ -101,15 +109,26 @@ function Footer() {
 }
 
 function CalculatorPage() {
-  const [ticketInput, setTicketInput] = useState("10");
+  const [ticketInput, setTicketInput] = useState("13");
   const [visitsPerMonth, setVisitsPerMonth] = useState(8.66);
+  const [peopleInput, setPeopleInput] = useState("10");
+  const [peoplePeriod, setPeoplePeriod] = useState<PeoplePeriod>("week");
   const [panel, setPanel] = useState<Panel>("numbers");
-  const [purchaseMode, setPurchaseMode] = useState<PurchaseMode>("repeat");
+  const [purchaseMode, setPurchaseMode] = useState<PurchaseMode>("visits");
   const ticket = Number(ticketInput);
+  const peopleCount = Number(peopleInput);
+  const peoplePerMonth = useMemo(
+    () => calculatePeoplePerMonth(peopleCount, peoplePeriod),
+    [peopleCount, peoplePeriod]
+  );
   const fees = useMemo(() => calculateFees(ticket), [ticket]);
-  const horizon = useMemo(
+  const visitHorizon = useMemo(
     () => calculateHorizonSavings(ticket, visitsPerMonth),
     [ticket, visitsPerMonth]
+  );
+  const customerHorizon = useMemo(
+    () => calculateHorizonSavings(ticket, peoplePerMonth),
+    [ticket, peoplePerMonth]
   );
 
   return (
@@ -119,27 +138,24 @@ function CalculatorPage() {
           <div className="mode-tabs" role="tablist" aria-label="Purchase type">
             <button
               role="tab"
-              aria-selected={purchaseMode === "repeat"}
-              className={purchaseMode === "repeat" ? "active" : ""}
-              onClick={() => setPurchaseMode("repeat")}
+              aria-selected={purchaseMode === "visits"}
+              className={purchaseMode === "visits" ? "active" : ""}
+              onClick={() => setPurchaseMode("visits")}
             >
               Repeat visits
             </button>
             <button
               role="tab"
-              aria-selected={purchaseMode === "single"}
-              className={purchaseMode === "single" ? "active" : ""}
-              onClick={() => setPurchaseMode("single")}
+              aria-selected={purchaseMode === "customers"}
+              className={purchaseMode === "customers" ? "active" : ""}
+              onClick={() => setPurchaseMode("customers")}
             >
-              One purchase
+              Repeat customers
             </button>
           </div>
 
           <label className="amount-label" htmlFor="ticket">
             Order total
-            {purchaseMode === "single" ? (
-              <span>Bitcoin Payments are currently capped at $600 per transaction.</span>
-            ) : null}
           </label>
           <div className="amount-control">
             <span>$</span>
@@ -159,11 +175,11 @@ function CalculatorPage() {
               : "Try a coffee, burrito, a beer, whatever."}
           </p>
 
-          {purchaseMode === "repeat" ? (
+          {purchaseMode === "visits" ? (
             <>
               <div className="frequency-head">
                 <label htmlFor="frequency">Customer visits</label>
-                <span>{formatVisits(visitsPerMonth)} / month</span>
+                <span>{formatCount(visitsPerMonth)} / month</span>
               </div>
               <div className="preset-grid" aria-label="Frequency presets">
                 {frequencyPresets.map((preset) => (
@@ -187,41 +203,58 @@ function CalculatorPage() {
                 onChange={(event) => setVisitsPerMonth(Number(event.target.value))}
               />
             </>
-          ) : (
-            <div className="single-note">
-              Good for a bag of beans, a farmers market sale, or any one order at the counter.
-            </div>
-          )}
+          ) : null}
         </div>
 
-        <div className="panel-toggle" role="tablist" aria-label="Calculator panel">
-          <button
-            role="tab"
-            aria-selected={panel === "numbers"}
-            className={panel === "numbers" ? "active" : ""}
-            onClick={() => setPanel("numbers")}
-          >
-            <ReceiptText size={18} /> Numbers
-          </button>
-          <button
-            role="tab"
-            aria-selected={panel === "qr"}
-            className={panel === "qr" ? "active" : ""}
-            onClick={() => setPanel("qr")}
-          >
-            <QrCode size={18} /> QR
-          </button>
-        </div>
+        {purchaseMode === "customers" ? (
+          <PeopleVolumePanel
+            peopleInput={peopleInput}
+            peoplePeriod={peoplePeriod}
+            setPeopleInput={setPeopleInput}
+            setPeoplePeriod={setPeoplePeriod}
+          />
+        ) : null}
 
-        {panel === "numbers" ? (
-          purchaseMode === "repeat" ? (
-            <SavingsResults fees={fees} horizon={horizon} />
-          ) : (
-            <SinglePurchaseResults fees={fees} />
-          )
-        ) : (
-          <QrPanel />
-        )}
+        {purchaseMode === "visits" ? (
+          <div className="panel-toggle" role="tablist" aria-label="Calculator panel">
+            <button
+              role="tab"
+              aria-selected={panel === "numbers"}
+              className={panel === "numbers" ? "active" : ""}
+              onClick={() => setPanel("numbers")}
+            >
+              <ReceiptText size={18} /> Numbers
+            </button>
+            <button
+              role="tab"
+              aria-selected={panel === "qr"}
+              className={panel === "qr" ? "active" : ""}
+              onClick={() => setPanel("qr")}
+            >
+              <QrCode size={18} /> QR
+            </button>
+          </div>
+        ) : null}
+
+        {purchaseMode === "visits" && panel === "numbers" ? (
+          <SavingsResults
+            fees={fees}
+            horizon={visitHorizon}
+            showMetrics
+            volumeLabel="similar visits"
+          />
+        ) : null}
+        {purchaseMode === "visits" && panel === "qr" ? <QrPanel /> : null}
+        {purchaseMode === "customers" ? (
+          <>
+            <SavingsResults
+              fees={fees}
+              horizon={customerHorizon}
+              volumeLabel="people"
+            />
+            <QrPanel />
+          </>
+        ) : null}
       </section>
 
       <section className="hero-copy" aria-labelledby="calculator-title">
@@ -248,37 +281,39 @@ function CalculatorPage() {
   );
 }
 
-function SinglePurchaseResults({ fees }: { fees: ReturnType<typeof calculateFees> }) {
+function PeopleVolumePanel({
+  peopleInput,
+  peoplePeriod,
+  setPeopleInput,
+  setPeoplePeriod
+}: {
+  peopleInput: string;
+  peoplePeriod: PeoplePeriod;
+  setPeopleInput: (value: string) => void;
+  setPeoplePeriod: (period: PeoplePeriod) => void;
+}) {
   return (
-    <section className="results" aria-label="Single purchase savings">
-      <div className="big-number">
-        <span>This purchase saves</span>
-        <strong>{formatMoney(fees.saveNow)}</strong>
-        <p>
-          On one {formatMoney(fees.ticket)} order in 2026, the card fee is{" "}
-          {formatMoney(fees.cardFee)} and the Bitcoin fee is {formatMoney(fees.bitcoinFeeNow)}.
-        </p>
+    <section className="people-volume-panel" aria-label="People volume">
+      <div className="people-count-card">
+        <label htmlFor="people-count">People paying with Bitcoin</label>
+        <input
+          id="people-count"
+          inputMode="numeric"
+          min="0"
+          value={peopleInput}
+          onChange={(event) => setPeopleInput(event.target.value)}
+        />
       </div>
-
-      <div className="metric-grid">
-        <Metric
-          icon={<CircleDollarSign size={18} />}
-          label="Card fee"
-          value={formatMoney(fees.cardFee)}
-          note="2.6% + 15¢"
-        />
-        <Metric
-          icon={<Bitcoin size={18} />}
-          label="Bitcoin fee - 2026"
-          value={formatMoney(fees.bitcoinFeeNow)}
-          note={`Save ${formatMoney(fees.saveNow)} today`}
-        />
-        <Metric
-          icon={<Bitcoin size={18} />}
-          label="Bitcoin fee - 2027"
-          value={formatMoney(fees.bitcoinFeeLater)}
-          note={`Save ${formatMoney(fees.saveLater)} later`}
-        />
+      <div className="people-period-stack" aria-label="People frequency">
+        {peoplePeriodOptions.map((option) => (
+          <button
+            key={option.period}
+            className={peoplePeriod === option.period ? "active" : ""}
+            onClick={() => setPeoplePeriod(option.period)}
+          >
+            {option.label}
+          </button>
+        ))}
       </div>
     </section>
   );
@@ -286,42 +321,48 @@ function SinglePurchaseResults({ fees }: { fees: ReturnType<typeof calculateFees
 
 function SavingsResults({
   fees,
-  horizon
+  horizon,
+  volumeLabel,
+  showMetrics = false
 }: {
   fees: ReturnType<typeof calculateFees>;
   horizon: ReturnType<typeof calculateHorizonSavings>;
+  volumeLabel: string;
+  showMetrics?: boolean;
 }) {
   return (
-    <section className="results" aria-label="Savings results">
+    <section className="results savings-results" aria-label="Savings results">
       <div className="big-number">
         <span>You save over the next {horizon.months} full months</span>
         <strong>{formatMoney(horizon.totalSavings)}</strong>
         <p>
-          Based on {formatVisits(horizon.totalVisits)} similar visits at{" "}
+          Based on {formatCount(horizon.totalVisits)} {volumeLabel} at{" "}
           {formatMoney(fees.ticket)} each. {formatHorizonMix(horizon)}
         </p>
       </div>
 
-      <div className="metric-grid">
-        <Metric
-          icon={<CircleDollarSign size={18} />}
-          label="Card fee"
-          value={formatMoney(fees.cardFee)}
-          note="2.6% + 15¢"
-        />
-        <Metric
-          icon={<Bitcoin size={18} />}
-          label="Bitcoin fee - 2026"
-          value={formatMoney(fees.bitcoinFeeNow)}
-          note={`Save ${formatMoney(fees.saveNow)} today`}
-        />
-        <Metric
-          icon={<Bitcoin size={18} />}
-          label="Bitcoin fee - 2027"
-          value={formatMoney(fees.bitcoinFeeLater)}
-          note={`Save ${formatMoney(fees.saveLater)} later`}
-        />
-      </div>
+      {showMetrics ? (
+        <div className="metric-grid">
+          <Metric
+            icon={<CircleDollarSign size={18} />}
+            label="Card fee"
+            value={formatMoney(fees.cardFee)}
+            note="2.6% + 15¢"
+          />
+          <Metric
+            icon={<Bitcoin size={18} />}
+            label="Bitcoin fee - 2026"
+            value={formatMoney(fees.bitcoinFeeNow)}
+            note={`Save ${formatMoney(fees.saveNow)} today`}
+          />
+          <Metric
+            icon={<Bitcoin size={18} />}
+            label="Bitcoin fee - 2027"
+            value={formatMoney(fees.bitcoinFeeLater)}
+            note={`Save ${formatMoney(fees.saveLater)} later`}
+          />
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -370,7 +411,7 @@ function QrPanel() {
         </div>
       </div>
       <div className="qr-copy">
-        <p className="eyebrow">Merchant read</p>
+        <p className="eyebrow">Next thing to scan</p>
         <h2>Why Turn On Bitcoin?</h2>
         <p>
           A 2-minute page with the plain-English fee case, practical benefits, FAQ,

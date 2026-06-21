@@ -3,6 +3,7 @@ import {
   BITCOIN_TRANSACTION_CAP,
   calculateFees,
   calculateHorizonSavings,
+  calculatePeoplePerMonth,
   formatMoney
 } from "./calculator";
 
@@ -61,6 +62,20 @@ describe("calculateHorizonSavings", () => {
     expect(result.monthsThrough2026).toBe(6);
     expect(result.monthsAfter2026).toBe(6);
     expect(result.totalVisits).toBeCloseTo(103.92, 2);
+  });
+});
+
+describe("calculatePeoplePerMonth", () => {
+  it("converts people per day using calendar days across the year", () => {
+    expect(calculatePeoplePerMonth(10, "day")).toBeCloseTo(304.17, 2);
+  });
+
+  it("converts people per week using weeks across the year", () => {
+    expect(calculatePeoplePerMonth(10, "week")).toBeCloseTo(43.45, 2);
+  });
+
+  it("keeps people per month as monthly volume", () => {
+    expect(calculatePeoplePerMonth(10, "month")).toBe(10);
   });
 });
 

@@ -309,6 +309,52 @@ p {
   margin: -6px 0 0;
 }
 
+.people-volume-panel {
+  display: grid;
+  grid-template-columns: minmax(138px, 0.78fr) minmax(170px, 1.22fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(247, 147, 26, 0.48);
+  border-radius: 8px;
+  background: #fff8ec;
+}
+
+.people-count-card {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  min-height: 118px;
+  padding: 11px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 5px 5px 0 var(--orange);
+}
+
+.people-count-card label {
+  color: var(--green-900);
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1.12;
+}
+
+.people-count-card input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: clamp(2.6rem, 12vw, 4.8rem);
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: left;
+}
+
+.people-count-card input:focus {
+  outline: 0;
+}
+
 .preset-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -333,6 +379,35 @@ p {
 .frequency-range {
   width: 100%;
   accent-color: var(--green-700);
+}
+
+.people-period-stack {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.people-period-stack button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
+  white-space: normal;
+}
+
+.people-period-stack button.active {
+  border-color: var(--green-900);
+  background: var(--green-900);
+  color: var(--white);
 }
 
 .single-note {
@@ -364,6 +439,10 @@ p {
 .results {
   display: grid;
   gap: 14px;
+}
+
+.savings-results {
+  min-height: auto;
 }
 
 .big-number {
@@ -852,14 +931,6 @@ p {
     margin: -3px 0;
   }
 
-  .panel-toggle {
-    margin-top: 0;
-  }
-
-  .panel-toggle button {
-    min-height: 34px;
-  }
-
   .mode-tabs button {
     min-height: 34px;
     padding: 0 8px;
@@ -872,8 +943,46 @@ p {
     font-size: 0.78rem;
   }
 
+  .panel-toggle {
+    margin-top: 0;
+  }
+
+  .panel-toggle button {
+    min-height: 34px;
+  }
+
   .preset-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .people-volume-panel {
+    grid-template-columns: minmax(92px, 0.68fr) minmax(0, 1.32fr);
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .people-count-card {
+    min-height: 108px;
+    padding: 8px;
+    box-shadow: 4px 4px 0 var(--orange);
+  }
+
+  .people-count-card label {
+    font-size: 0.9rem;
+  }
+
+  .people-count-card input {
+    font-size: clamp(2.65rem, 14vw, 3.35rem);
+  }
+
+  .people-period-stack {
+    gap: 6px;
+  }
+
+  .people-period-stack button {
+    min-height: 34px;
+    padding: 0 9px;
+    font-size: 0.9rem;
   }
 
   .results {
@@ -907,9 +1016,23 @@ p {
     font-size: 0.7rem;
   }
 
-  .results,
-  .qr-panel {
+  .results {
     min-height: auto;
+  }
+
+  .qr-panel {
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .qr-frame {
+    width: min(100%, 285px);
+    padding: 14px;
+    box-shadow: 5px 5px 0 var(--green-500);
+  }
+
+  .qr-copy h2 {
+    font-size: clamp(1.55rem, 9vw, 2rem);
   }
 
   .big-number {
