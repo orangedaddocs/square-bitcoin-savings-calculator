@@ -663,7 +663,7 @@ p {
 }
 
 .article-accent {
-  color: #a95a00;
+  color: var(--orange);
 }
 
 .article-body p:first-child::first-letter {
