@@ -86,14 +86,15 @@ describe("CalculatorPage", () => {
     expect(children.indexOf(peopleControls!)).toBeLessThan(children.indexOf(qrPanel!));
   });
 
-  it("shows the stronger savings proof on the Why Bitcoin page", () => {
+  it("shows the coffee regular proof on the Why Bitcoin page", () => {
     window.location.hash = "#/why-bitcoin";
     render(<App />);
 
     expect(
       screen.getByText(
-        "A regular buys a coffee today. If seven people come in each day and spend $13, the fee gap is more than $1,000 back in the merchant's pocket over the next year."
+        "A regular who buys that coffee every day adds up to about $67 over the next 12 full months."
       )
     ).toBeInTheDocument();
+    expect(screen.queryByText(/If seven people come in each day/)).not.toBeInTheDocument();
   });
 });
