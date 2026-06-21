@@ -88,7 +88,7 @@ describe("CalculatorPage", () => {
 
   it("shows the coffee regular proof on the Why Bitcoin page", () => {
     window.location.hash = "#/why-bitcoin";
-    render(<App />);
+    const { container } = render(<App />);
 
     expect(
       screen.getByText(
@@ -100,11 +100,19 @@ describe("CalculatorPage", () => {
         /Bitcoin customers are generally happy to cover the small fee on their end, and they're eager to become regulars/
       )
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "The math gets interesting when you get daily customers. If seven people come in daily, the owner saves more than"
-      )
-    ).not.toHaveClass("article-accent");
+    const proofParagraph = Array.from(container.querySelectorAll(".article-body p")).find((paragraph) =>
+      paragraph.textContent?.startsWith("The math gets interesting when you get daily customers.")
+    );
+    const boldProof = screen.getByText(
+      "If you get 7 people who come in daily and spend $13 each, the owner saves more than"
+    );
+
+    expect(proofParagraph).toBeInTheDocument();
+    expect(proofParagraph!.firstChild?.textContent).toBe(
+      "The math gets interesting when you get daily customers. "
+    );
+    expect(boldProof.tagName).toBe("STRONG");
+    expect(boldProof).not.toHaveClass("article-accent");
     expect(screen.getByText("$1,000 a year in fees")).toHaveClass("article-accent");
   });
 });

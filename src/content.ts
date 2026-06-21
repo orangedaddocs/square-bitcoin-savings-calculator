@@ -51,8 +51,9 @@ export const articleParagraphs: ArticleSegment[][] = [
     " Bitcoin customers are generally happy to cover the small fee on their end, and they're eager to become regulars who actively support merchants that accept it."
   ],
   [
+    "The math gets interesting when you get daily customers. ",
     {
-      text: "The math gets interesting when you get daily customers. If seven people come in daily, the owner saves more than ",
+      text: "If you get 7 people who come in daily and spend $13 each, the owner saves more than ",
       strong: true
     },
     {
