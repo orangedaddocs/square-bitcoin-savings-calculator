@@ -487,6 +487,10 @@ function ArticlePage() {
               {paragraph.map((segment, segmentIndex) =>
                 typeof segment === "string" ? (
                   segment
+                ) : "accent" in segment ? (
+                  <strong className="article-accent" key={segmentIndex}>
+                    {segment.text}
+                  </strong>
                 ) : (
                   <strong key={segmentIndex}>{segment.text}</strong>
                 )

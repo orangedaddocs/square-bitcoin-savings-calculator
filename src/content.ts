@@ -36,7 +36,10 @@ export const resourceLinks = [
   }
 ];
 
-export type ArticleSegment = string | { text: string; strong: true };
+export type ArticleSegment =
+  | string
+  | { text: string; strong: true }
+  | { text: string; accent: true };
 
 export const articleParagraphs: ArticleSegment[][] = [
   [
@@ -44,6 +47,11 @@ export const articleParagraphs: ArticleSegment[][] = [
     {
       text: "A regular who buys that coffee every day adds up to about $67 over the next 12 full months.",
       strong: true
+    },
+    " ",
+    {
+      text: "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees. Real money.",
+      accent: true
     },
     " Customers who use bitcoin are happy to accept the small fee that they pay on their end. It's a win-win."
   ],

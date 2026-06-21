@@ -95,6 +95,10 @@ describe("CalculatorPage", () => {
         "A regular who buys that coffee every day adds up to about $67 over the next 12 full months."
       )
     ).toBeInTheDocument();
-    expect(screen.queryByText(/If seven people come in each day/)).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "And where the math gets really interesting: if seven people a day come in for a burrito and a coffee and spend $13 each, the owner saves more than $1,000 a year in fees. Real money."
+      )
+    ).toHaveClass("article-accent");
   });
 });

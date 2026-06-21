@@ -662,6 +662,10 @@ p {
   margin-bottom: 1.15em;
 }
 
+.article-accent {
+  color: #a95a00;
+}
+
 .article-body p:first-child::first-letter {
   float: left;
   margin: 0.05em 0.08em 0 0;
